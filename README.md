@@ -1,11 +1,14 @@
 # blockchain-rs
 
-A simple blockchain implementation in Rust for my own reference.
-
 # Table of Contents
 
+* [Why?](#why)
 * [Block](#block)
 * [Blockchain](#blockchain)
+
+# Why?
+
+I will be needing a similar data structure for a future Rust project, so I figured I should create a simple blockchain implementation to get familiar with it.
 
 # Block
 
