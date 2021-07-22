@@ -50,18 +50,6 @@ impl Block {
             previous_hash: String::from(previous_hash)
         }
     }
-
-    // Display block contents.
-    pub fn display(&self) {
-        println!(r#"
-BLOCK
-
-hash:          {}
-data:          {:?}
-timestamp:     {}
-previous hash: {}
-        "#, self.block_hash, self.data, self.timestamp, self.previous_hash);
-    }
 }
 ```
 
@@ -98,18 +86,6 @@ impl Blockchain {
         self.chain.push(new_block);
 
         true
-    }
-
-    // Display blockchain.
-    pub fn display(&self) {
-        println!("TRANSACTIONS\n");
-        for transaction in &self.transactions {
-            println!("SHA256: {}", transaction);
-        }
-
-        for block in &self.chain {
-            block.display();
-        }
     }
 }
 ```
