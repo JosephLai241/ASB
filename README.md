@@ -1,4 +1,6 @@
-# blockchain-rs
+# ASB
+
+A Simple Blockchain.
 
 # Table of Contents
 
