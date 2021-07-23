@@ -2,6 +2,7 @@
 
 mod block;
 mod blockchain;
+mod cli;
 
 use std::time;
 
@@ -9,17 +10,9 @@ use std::time;
 fn main() {
     let start = time::Instant::now();
 
-    let difficulty = 5;   // Change this value to set a difficulty level.
-    let total_blocks = 5; // Change this value to set the total number of `Block`s in the `Blockchain`.
-
-    if total_blocks < 2 {
-        panic!(
-            format!(
-                "Cannot provide value of {}. Genesis block is the first block.", 
-                total_blocks
-            )
-        );
-    }
+    let args = cli::get_args();
+    let difficulty = args.difficulty;   
+    let total_blocks = args.total_blocks;
 
     println!("\nINITIALIZING BLOCKCHAIN");
     println!("=======================\n");
