@@ -7,9 +7,9 @@ I will be needing a similar data structure for a future Rust project, so I figur
 # Table of Contents
 
 * [The Implementation](#the-implementation)
-    + [`Block.rs`](#blockrs)
+    + [`block.rs`](#blockrs)
         * [Calculating a `Block`'s SHA256 Hash](#calculating-a-blocks-sha256-hash)
-    + [`Blockchain.rs`](#blockchainrs)
+    + [`blockchain.rs`](#blockchainrs)
 * [Running `asb`](#running-asb)
     + [Examples](#examples)
         * [5 Blocks With a Difficulty of 5](#5-blocks-with-a-difficulty-of-5)
@@ -18,7 +18,7 @@ I will be needing a similar data structure for a future Rust project, so I figur
 
 # The Implementation
 
-## `Block.rs`
+## `block.rs`
 
 Each `Block` within the `Blockchain` contains:
 
@@ -74,6 +74,13 @@ impl Block {
 To calculate the hash, all data excluding the `block_hash` and `nonce` contained within the `Block` is concatenated into a `String`. `get_hash_string()` does exactly this.
 
 ```rust
+// Imports at the top of `block.rs`.
+use data_encoding::HEXLOWER;
+use ring::digest::{
+    Context,
+    SHA256
+};
+
     fn get_hash(hash_string: &str) -> String {
         let mut context = Context::new(&SHA256);
         context.update(hash_string.to_string().as_bytes());
@@ -112,6 +119,9 @@ While the hash does not match the correct pattern, a new hash is calculated by c
 If the hash matches the correct pattern, the `block_hash` and `nonce` are set within the `Block`.
 
 ```rust
+// Import at the top of `block.rs`.
+use chrono::prelude::Local;
+
     pub fn new(data: &str, difficulty: usize, index: usize, previous_hash: &str) -> Block {
         let mut new_block = Block{
             index: index,
@@ -130,7 +140,7 @@ If the hash matches the correct pattern, the `block_hash` and `nonce` are set wi
 
 `new()` will return a new `Block` after calculating its `block_hash` and `nonce` by calling the previously defined `mine_block()` method.
 
-## `Blockchain.rs`
+## `blockchain.rs`
 
 A `Blockchain` contains:
 
@@ -141,6 +151,9 @@ A `Blockchain` contains:
 This is the `struct` definition:
 
 ```rust
+// Import at the top of `blockchain.rs`.
+use crate::block::Block;
+
 #[derive(Debug)]
 pub struct Blockchain {
     pub chain: Vec<Block>,
