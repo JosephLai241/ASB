@@ -233,11 +233,15 @@ Binaries are attached to each release in the [Releases][Releases] section.
 # Running `asb`
 
 ```
-usage:
+usage: asb
 
-    -d, --difficulty <difficulty>    Set the difficulty level [default: 5]
-    -t, --total <total-blocks>       Set the total number of blocks in the blockchain [default: 5]
+    [-d <difficulty>]
+    [-t <total-blocks>]
 ```
+
+Set the difficulty level with the `-d` flag. The default value is `5`.
+
+Set the total number of blocks in the blockchain with the `-t` flag. The default value is `5`.
 
 ## Examples
 
