@@ -35,7 +35,7 @@ impl Blockchain {
     }
 
     /// Add a new `Block` to the `Blockchain`.
-    pub fn add_transaction(&mut self, data: String) {
+    pub fn add_block(&mut self, data: String) {
         let last_block = &self.chain[self.chain.len() - 1];
         let previous_hash = &last_block.block_hash;
 
@@ -75,7 +75,7 @@ mod test_blockchain {
     #[test]
     fn test_add_transaction() {
         let mut blockchain = Blockchain::new(1);
-        blockchain.add_transaction("test".to_string());
+        blockchain.add_block("test".to_string());
 
         assert_eq!(blockchain.chain.len(), 2);
         assert_eq!(blockchain.transactions.len(), 2);
