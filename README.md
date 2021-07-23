@@ -1,7 +1,7 @@
 # ASB
 
 ![GitHub top language](https://img.shields.io/github/languages/top/JosephLai241/ASB?color=yellow&logo=rust)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/JosephLai241/ASB/Rust)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/JosephLai241/ASB/Rust)][GitHub Actions]
 
 A Simple Blockchain. Written in Rust.
 
@@ -547,6 +547,7 @@ FINISHED CREATING BLOCKCHAIN WITH 6 BLOCKS IN 0 SECONDS.
 ```
 
 <!-- LINKS -->
+[GitHub Actions]: https://github.com/JosephLai241/ASB/actions/workflows/rust.yml
 [Proof of Work]: https://en.wikipedia.org/wiki/Proof_of_work
 [Rust]: https://www.rust-lang.org/
 [Releases]: https://github.com/JosephLai241/ASB/releases
