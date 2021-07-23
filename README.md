@@ -11,9 +11,10 @@ I will be needing a similar data structure for a future Rust project, so I figur
         * [Calculating a `Block`'s SHA256 Hash](#calculating-a-blocks-sha256-hash)
     + [`Blockchain.rs`](#blockchainrs)
 * [Running `asb`](#running-asb)
-    + [5 Blocks With a Difficulty of 5](#5-blocks-with-a-difficulty-of-5)
-    + [3 Blocks With a Difficulty of 6](#3-blocks-with-a-difficulty-of-6)
-    + [6 Blocks With a Difficulty of 3](#6-blocks-with-a-difficulty-of-3)
+    + [Examples](#examples)
+        * [5 Blocks With a Difficulty of 5](#5-blocks-with-a-difficulty-of-5)
+        * [3 Blocks With a Difficulty of 6](#3-blocks-with-a-difficulty-of-6)
+        * [6 Blocks With a Difficulty of 3](#6-blocks-with-a-difficulty-of-3)
 
 # The Implementation
 
@@ -188,13 +189,15 @@ The new `Block` and its hash is then `push`ed onto the `chain` and `transactions
 You can play around with this demo by changing these two values defined in `main.rs`:
 
 ```rust
-let difficulty = 6;
-let total_blocks = 3;
+let difficulty = 5;
+let total_blocks = 5;
 ```
+
+You will notice time spent performing the Proof of Work algorithm drastically increases with the `difficulty` level.
 
 > Above is the default configuration.
 
-You can just run the unoptimized binary with your changes:
+After modifying the values, you can just run the unoptimized binary with your changes:
 
 ```
 cargo run
@@ -207,9 +210,11 @@ cargo build --release
 ./target/release/asb
 ```
 
-Re-compiling takes about a second after the initial build. It is also *much* faster, to no surprise.
+Re-compiling only takes about a second after the initial build. It is also *much* faster, to no surprise.
 
-## 5 Blocks With a Difficulty of 5
+## Examples
+
+### 5 Blocks With a Difficulty of 5
 
 Output:
 
@@ -307,7 +312,7 @@ FINISHED CREATING BLOCKCHAIN WITH 5 BLOCKS IN 10 SECONDS.
 
 ```
 
-## 3 Blocks With a Difficulty of 6
+### 3 Blocks With a Difficulty of 6
 
 Configuration:
 
@@ -384,7 +389,7 @@ FINISHED CREATING BLOCKCHAIN WITH 3 BLOCKS IN 123 SECONDS.
 
 ```
 
-## 6 Blocks With a Difficulty of 3
+### 6 Blocks With a Difficulty of 3
 
 Configuration:
 
