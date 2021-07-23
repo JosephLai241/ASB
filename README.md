@@ -175,7 +175,6 @@ I then defined some methods to initialize a new `Blockchain`. Let's go over them
 ```rust
 impl Blockchain {
     pub fn new(difficulty: usize) -> Blockchain {
-        println!("Creating genesis block");
         let genesis = Block::new("Genesis Block", difficulty, 0, &"0".repeat(64));
         let genesis_hash = genesis.block_hash.clone().to_string();
 
