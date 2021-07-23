@@ -2,7 +2,9 @@
 
 A Simple Blockchain. Written in Rust.
 
-I will be needing a similar data structure for a future Rust project, so I figured I should create a simple blockchain implementation to get familiar with it.
+I need a similar data structure for a future Rust project, so I figured I should create a simple blockchain implementation to get familiar with it.
+
+Information on how to run the demo is located in the [Running `asb`](#running-asb) section.
 
 # Table of Contents
 
@@ -10,6 +12,9 @@ I will be needing a similar data structure for a future Rust project, so I figur
     + [`block.rs`](#blockrs)
         * [Calculating a `Block`'s SHA256 Hash](#calculating-a-blocks-sha256-hash)
     + [`blockchain.rs`](#blockchainrs)
+* [Installation](#installation)
+    + [Compile From Source](#compile-from-source)
+    + [Or Download a Binary](#or-download-a-binary)
 * [Running `asb`](#running-asb)
     + [Examples](#examples)
         * [5 Blocks With a Difficulty of 5](#5-blocks-with-a-difficulty-of-5)
@@ -110,9 +115,9 @@ use ring::digest::{
 
 ```
 
-`mine_block()` is where the [Proof of Work][Proof of Work] happens. 
+`mine_block()` is where the [Proof of Work][Proof of Work] happens.
 
-I initialize the `hash` to an empty `String`, and the `nonce` to `0`. The `hash` is continuously checked against the pattern by calling the previously defined `is_valid_hash()` method. 
+I initialize the `hash` to an empty `String`, and the `nonce` to `0`. The `hash` is continuously checked against the pattern by calling the previously defined `is_valid_hash()` method.
 
 While the hash does not match the correct pattern, a new hash is calculated by concatenating the incremented `nonce` with the target string returned by `get_hash_string()`.
 
@@ -195,39 +200,54 @@ impl Blockchain {
 
 I just defined one more method, `add_block()`, which will obviously add a new `Block` to the `Blockchain`. The new `Block`'s `block_hash` and `nonce` are calculated based on the `difficulty` value set in the `Blockchain` struct.
 
-The new `Block` and its hash is then `push`ed onto the `chain` and `transactions` `Vec`s respectively. 
+The new `Block` and its hash is then `push`ed onto the `chain` and `transactions` `Vec`s respectively.
 
-# Running `asb`
+# Installation
 
-You can play around with this demo by changing these two values defined in `main.rs`:
+## Compile From Source
 
-```rust
-let difficulty = 5;
-let total_blocks = 5;
-```
-
-> Above is the default configuration.
-
-You will notice time spent performing the Proof of Work algorithm drastically increases with the `difficulty` level.
-
-After modifying the values, you can just run the unoptimized binary with your changes:
-
-```
-cargo run
-```
-
-But I recommend re-compiling and running the optimized version:
+You will need [Rust][Rust] installed on your computer.
 
 ```
 cargo build --release
-./target/release/asb
 ```
 
-Re-compiling only takes about a second after the initial build. It is also *much* faster, to no surprise.
+Then check if the `asb` binary compiled correctly:
+
+On Linux or Mac:
+
+```
+./target/release/asb -V
+```
+
+On Windows:
+
+```
+./target/release/asb.exe -V
+```
+
+## Or Download a Binary
+
+Binaries are attached to each release in the [Releases][Releases] section.
+
+# Running `asb`
+
+```
+usage:
+
+    -d, --difficulty <difficulty>    Set the difficulty level [default: 5]
+    -t, --total <total-blocks>       Set the total number of blocks in the blockchain [default: 5]
+```
 
 ## Examples
 
 ### 5 Blocks With a Difficulty of 5
+
+Command:
+
+```
+$ asb
+```
 
 Output:
 
@@ -284,7 +304,7 @@ index:         0
 nonce:         246429
 previous hash: 0000000000000000000000000000000000000000000000000000000000000000
 timestamp:     07-23-2021 03:47:23
-        
+
 BLOCK 1
 
 hash:          00000dc727c2ad0d4e0651f04697729c19f3bfeaf0fde13d22d138390c032b2f
@@ -293,7 +313,7 @@ index:         1
 nonce:         35498
 previous hash: 000002ef9b8faa31df2ffca79ea7a40e8fb99bf6d0218fc41af2a9460b69cae9
 timestamp:     07-23-2021 03:47:23
-        
+
 BLOCK 2
 
 hash:          000004c1f922033e6cdc2e81b1786a5e2f9c056b7720eebf922bbff257815611
@@ -302,7 +322,7 @@ index:         2
 nonce:         3279400
 previous hash: 00000dc727c2ad0d4e0651f04697729c19f3bfeaf0fde13d22d138390c032b2f
 timestamp:     07-23-2021 03:47:23
-        
+
 BLOCK 3
 
 hash:          00000d693810e04371b7b7d78cd0decee2c69def64960fca5bfa5109cb05ea9c
@@ -311,7 +331,7 @@ index:         3
 nonce:         941862
 previous hash: 000004c1f922033e6cdc2e81b1786a5e2f9c056b7720eebf922bbff257815611
 timestamp:     07-23-2021 03:47:28
-        
+
 BLOCK 4
 
 hash:          000007378b30eb3af6fbbf79a0b730eccae2a7e94af2a59b7ede3f1538eafdf1
@@ -320,18 +340,17 @@ index:         4
 nonce:         2277566
 previous hash: 00000d693810e04371b7b7d78cd0decee2c69def64960fca5bfa5109cb05ea9c
 timestamp:     07-23-2021 03:47:30
-        
+
 FINISHED CREATING BLOCKCHAIN WITH 5 BLOCKS IN 10 SECONDS.
 
 ```
 
 ### 3 Blocks With a Difficulty of 6
 
-Configuration:
+Command:
 
-```rust
-let difficulty = 6;
-let total_blocks = 3;
+```
+$ asb -d 6 -t 3
 ```
 
 Output:
@@ -379,7 +398,7 @@ index:         0
 nonce:         25611139
 previous hash: 0000000000000000000000000000000000000000000000000000000000000000
 timestamp:     07-23-2021 03:49:20
-        
+
 BLOCK 1
 
 hash:          000000ff34769d20b4ea5ed87dd6ab9758796c9255424b4d3b57856a3d3a73bd
@@ -388,7 +407,7 @@ index:         1
 nonce:         4520028
 previous hash: 000000f915a0ed32185029b7c740a7113a5535ffc63b669fe1f392faec95ce22
 timestamp:     07-23-2021 03:50:01
-        
+
 BLOCK 2
 
 hash:          00000051fc46f747d87944feb22401fa401398e2fdabda0a13e96b638336c435
@@ -397,18 +416,17 @@ index:         2
 nonce:         50128421
 previous hash: 000000ff34769d20b4ea5ed87dd6ab9758796c9255424b4d3b57856a3d3a73bd
 timestamp:     07-23-2021 03:50:08
-        
+
 FINISHED CREATING BLOCKCHAIN WITH 3 BLOCKS IN 123 SECONDS.
 
 ```
 
 ### 6 Blocks With a Difficulty of 3
 
-Configuration:
+Command:
 
-```rust
-let difficulty = 3;
-let total_blocks = 6;
+```
+$ asb -d 3 -t 6
 ```
 
 Output:
@@ -471,7 +489,7 @@ index:         0
 nonce:         5439
 previous hash: 0000000000000000000000000000000000000000000000000000000000000000
 timestamp:     07-23-2021 03:53:13
-        
+
 BLOCK 1
 
 hash:          000a22a4c8f82fd5036213b67827d39d334670cfe6f83933ade1ec816984368a
@@ -480,7 +498,7 @@ index:         1
 nonce:         5361
 previous hash: 000b112ffe3d23ab19717397ca86eb9cea1c4961c92e3c8e354a6a2ce21d7e6e
 timestamp:     07-23-2021 03:53:13
-        
+
 BLOCK 2
 
 hash:          000788050d9eb1e4ad38d00497842733375737a86dd0af7ce6f6c6562b3b7e93
@@ -489,7 +507,7 @@ index:         2
 nonce:         3743
 previous hash: 000a22a4c8f82fd5036213b67827d39d334670cfe6f83933ade1ec816984368a
 timestamp:     07-23-2021 03:53:13
-        
+
 BLOCK 3
 
 hash:          00019fffd8991621d28e51a68c603088070f917894e81d73d54cac0e42eda03a
@@ -498,7 +516,7 @@ index:         3
 nonce:         202
 previous hash: 000788050d9eb1e4ad38d00497842733375737a86dd0af7ce6f6c6562b3b7e93
 timestamp:     07-23-2021 03:53:13
-        
+
 BLOCK 4
 
 hash:          0004900e7daa43cf8b9b914e7056e0353aead7accc0f935a7920d790c599c466
@@ -507,7 +525,7 @@ index:         4
 nonce:         79
 previous hash: 00019fffd8991621d28e51a68c603088070f917894e81d73d54cac0e42eda03a
 timestamp:     07-23-2021 03:53:13
-        
+
 BLOCK 5
 
 hash:          00012b9f667c95cd3abc9bb879f5b2a0c7de2fac5681825e508e3eb210058396
@@ -516,10 +534,12 @@ index:         5
 nonce:         197
 previous hash: 0004900e7daa43cf8b9b914e7056e0353aead7accc0f935a7920d790c599c466
 timestamp:     07-23-2021 03:53:13
-        
+
 FINISHED CREATING BLOCKCHAIN WITH 6 BLOCKS IN 0 SECONDS.
 
 ```
 
 <!-- LINKS -->
 [Proof of Work]: https://en.wikipedia.org/wiki/Proof_of_work
+[Rust]: https://www.rust-lang.org/
+[Releases]: https://github.com/JosephLai241/ASB/releases
