@@ -2,22 +2,22 @@
 
 A Simple Blockchain. Written in Rust.
 
+I will be needing a similar data structure for a future Rust project, so I figured I should create a simple blockchain implementation to get familiar with it.
+
 # Table of Contents
 
-* [Why?](#why)
-* [`Block.rs`](#blockrs)
-    + [Calculating a `Block`'s SHA256 Hash](#calculating-a-blocks-sha256-hash)
-* [`Blockchain.rs`](#blockchainrs)
+* [The Implementation](#the-implementation)
+    + [`Block.rs`](#blockrs)
+        * [Calculating a `Block`'s SHA256 Hash](#calculating-a-blocks-sha256-hash)
+    + [`Blockchain.rs`](#blockchainrs)
 * [Running `asb`](#running-asb)
     + [5 Blocks With a Difficulty of 5](#5-blocks-with-a-difficulty-of-5)
     + [3 Blocks With a Difficulty of 6](#3-blocks-with-a-difficulty-of-6)
     + [6 Blocks With a Difficulty of 3](#6-blocks-with-a-difficulty-of-3)
 
-# Why?
+# The Implementation
 
-I will be needing a similar data structure for a future Rust project, so I figured I should create a simple blockchain implementation to get familiar with it.
-
-# `Block.rs`
+## `Block.rs`
 
 Each `Block` within the `Blockchain` contains:
 
@@ -44,7 +44,7 @@ pub struct Block {
 
 `block_hash` is `pub` since it will be stored in the `Blockchain`'s `transactions` `Vec` when the `Block` is added.
 
-## Calculating a `Block`'s SHA256 Hash
+### Calculating a `Block`'s SHA256 Hash
 
 I then defined some methods to calculate the hash of each `Block`. Let's go over them one by one.
 
@@ -129,7 +129,7 @@ If the hash matches the correct pattern, the `block_hash` and `nonce` are set wi
 
 `new()` will return a new `Block` after calculating its `block_hash` and `nonce` by calling the previously defined `mine_block()` method.
 
-# `Blockchain.rs`
+## `Blockchain.rs`
 
 A `Blockchain` contains:
 
