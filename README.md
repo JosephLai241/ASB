@@ -188,9 +188,8 @@ The new `Block` and its hash is then `push`ed onto the `chain` and `transactions
 You can play around with this demo by changing these two values defined in `main.rs`:
 
 ```rust
-let difficulty = 6;   // Change this value to set a difficulty level.
-let total_blocks = 3; // Change this value to set the total number of 
-                      //    `Block`s in the `Blockchain`.
+let difficulty = 6;
+let total_blocks = 3;
 ```
 
 > Above is the default configuration.
