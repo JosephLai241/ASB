@@ -157,8 +157,8 @@ use crate::block::Block;
 #[derive(Debug)]
 pub struct Blockchain {
     pub chain: Vec<Block>,
-    pub difficulty: usize,
-    pub transactions: Vec<String>
+    difficulty: usize,
+    transactions: Vec<String>
 }
 ```
 
