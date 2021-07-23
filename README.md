@@ -58,7 +58,7 @@ impl Block {
     }
 ```
 
-`is_valid_hash()` checks whether the `hash` begins with repeating `"0"`s. `"0"` is repeated `n` times, depending on the `difficulty` value. This method then returns a boolean value depending on whether `hash` matches the prefix defined by `pattern`.
+`is_valid_hash()` checks whether the `hash` begins with repeating `0`s. `0` is repeated `n` times, depending on the `difficulty` value. This method then returns a boolean value depending on whether `hash` matches the prefix defined by `pattern`.
 
 ```rust
     fn get_hash_string(&self) -> String {
@@ -179,7 +179,7 @@ impl Blockchain {
     }
 ```
 
-`new()` creates a new `Blockchain` with a genesis block. The genesis block is the first `Block` in the `chain` `Vec`. Its hash is also the first value in the `transactions` `Vec`.
+`new()` creates a new `Blockchain` with a genesis block. The genesis block is the first `Block` in the `chain` `Vec`. Its hash is also the first hash in the `transactions` `Vec`.
 
 ```rust
     pub fn add_block(&mut self, data: String) {
@@ -193,9 +193,9 @@ impl Blockchain {
 }
 ```
 
-I just defined one more method, `add_block()`, which will obviously add a new `Block` to the `Blockchain`. The new `Block`'s `nonce` is calculated based on the `difficulty` value set in the `Blockchain` struct.
+I just defined one more method, `add_block()`, which will obviously add a new `Block` to the `Blockchain`. The new `Block`'s `block_hash` and `nonce` are calculated based on the `difficulty` value set in the `Blockchain` struct.
 
-The new `Block` and its hash is then `push`ed onto the `chain` and `transactions` `Vec`s, respectively. 
+The new `Block` and its hash is then `push`ed onto the `chain` and `transactions` `Vec`s respectively. 
 
 # Running `asb`
 
