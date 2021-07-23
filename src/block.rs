@@ -34,6 +34,13 @@ pub struct Block {
 
 /// `Block` operations.
 impl Block {
+    /// Check if the hash is valid based on the difficulty value.
+    fn is_valid_hash(&self, difficulty: usize, hash: &str) -> bool {
+        let pattern = &"0".repeat(difficulty);
+
+        hash.starts_with(pattern)
+    }
+
     /// Get the concatenated string containing `Block` metadata.
     fn get_hash_string(&self) -> String {
         let mut hash_string = self.index.to_string();
@@ -42,13 +49,6 @@ impl Block {
         hash_string.push_str(&self.previous_hash);
 
         hash_string
-    }
-
-    /// Check if the hash is valid based on the difficulty value.
-    fn is_valid_hash(&self, difficulty: usize, hash: &str) -> bool {
-        let pattern = &"0".repeat(difficulty);
-
-        hash.starts_with(pattern)
     }
 
     /// Calculate the SHA256 hash value from the hash string.
@@ -100,9 +100,13 @@ impl Block {
 
     /// Display `Block` contents.
     pub fn display(&self) {
-        println!(r#"
-BLOCK {}
+        if self.index == 0 {
+            println!("\nGENESIS BLOCK");
+        } else {
+            println!("BLOCK {}", self.index);
+        }
 
+        println!(r#"
 hash:          {}
 data:          {:?}
 index:         {}
@@ -110,7 +114,6 @@ nonce:         {}
 previous hash: {}
 timestamp:     {}
         "#, 
-            self.index, 
             self.block_hash, 
             self.data, 
             self.index, 
