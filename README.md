@@ -206,9 +206,9 @@ let difficulty = 5;
 let total_blocks = 5;
 ```
 
-You will notice time spent performing the Proof of Work algorithm drastically increases with the `difficulty` level.
-
 > Above is the default configuration.
+
+You will notice time spent performing the Proof of Work algorithm drastically increases with the `difficulty` level.
 
 After modifying the values, you can just run the unoptimized binary with your changes:
 
