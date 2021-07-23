@@ -10,8 +10,7 @@ fn main() {
     let start = time::Instant::now();
 
     let difficulty = 5;   // Change this value to set a difficulty level.
-    let total_blocks = 5; // Change this value to set the total number of 
-                          //    `Block`s in the `Blockchain`.
+    let total_blocks = 5; // Change this value to set the total number of `Block`s in the `Blockchain`.
 
     if total_blocks < 2 {
         panic!(
