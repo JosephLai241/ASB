@@ -2,9 +2,9 @@
 
 A Simple Blockchain. Written in Rust.
 
-I need a similar data structure for a future Rust project, so I figured I should create a simple blockchain implementation to get familiar with it.
+I need a similar data structure for a future Rust project, so I figured I should create a simple blockchain implementation to get familiar with it. I also explain what happens in each method for my own reference.
 
-Information on how to run the demo is located in the [Running `asb`](#running-asb) section.
+See the [Installation](#installation) and then [Running `asb`](#running-asb) sections to run this demo.
 
 # Table of Contents
 
@@ -150,7 +150,7 @@ use chrono::prelude::Local;
 A `Blockchain` contains:
 
 * A `Vec` which holds `Block`s
-* A difficulty level which is used when calculating the `nonce`/Proof of Work
+* A difficulty level which is used when calculating the `Block`'s `block_hash` and `nonce`
 * A `Vec` which holds the SHA256 hashes of each `Block`
 
 This is the `struct` definition:
@@ -200,7 +200,7 @@ impl Blockchain {
 
 I just defined one more method, `add_block()`, which will obviously add a new `Block` to the `Blockchain`. The new `Block`'s `block_hash` and `nonce` are calculated based on the `difficulty` value set in the `Blockchain` struct.
 
-The new `Block` and its hash is then `push`ed onto the `chain` and `transactions` `Vec`s respectively.
+The new `Block` and its hash are then `push`ed onto the `chain` and `transactions` `Vec`s respectively.
 
 # Installation
 
