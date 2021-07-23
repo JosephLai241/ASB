@@ -14,9 +14,9 @@ pub struct Blockchain {
     /// Contains all `Block`s stored in this particular `Blockchain`
     pub chain: Vec<Block>,
     /// A difficulty level which will impact the time spent mining/generating proof of work (the nonce)
-    pub difficulty: usize,
+    difficulty: usize,
     /// Contains SHA256 values of all `Block`s stored in this particular `Blockchain`
-    pub transactions: Vec<String>
+    transactions: Vec<String>
 }
 
 /// `Blockchain` operations.
