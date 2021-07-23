@@ -1,5 +1,8 @@
 # ASB
 
+![GitHub top language](https://img.shields.io/github/languages/top/JosephLai241/ASB?color=yellow&logo=rust)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/JosephLai241/ASB/Rust)
+
 A Simple Blockchain. Written in Rust.
 
 I need a similar data structure for a future Rust project, so I figured I should create a simple blockchain implementation to get familiar with it. I also explain what happens in each method for my own reference.
