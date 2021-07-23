@@ -105,11 +105,12 @@ use ring::digest::{
         let mut nonce: usize = 0;
 
         while !self.is_valid_hash(difficulty, &hash) {
+            nonce += 1;
+            
             let mut temp_hash_string = self.get_hash_string();
             temp_hash_string.push_str(&nonce.to_string());
 
             hash = Block::get_hash(&temp_hash_string);
-            nonce += 1;
         }
 
         self.block_hash = hash;
